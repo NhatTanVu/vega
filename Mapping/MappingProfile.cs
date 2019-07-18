@@ -18,10 +18,20 @@ namespace vega.Mapping
                 .ForMember(vr => vr.Features, opt => opt.MapFrom(v => v.Features.Select(vf => vf.FeatureId)));
             // API Resource to Domain
             CreateMap<VehicleResource, Vehicle>()
+                .ForMember(v => v.Id, opt  => opt.Ignore())
                 .ForMember(v => v.ContactName, opt => opt.MapFrom(vr => vr.Contact.Name))
                 .ForMember(v => v.ContactEmail, opt => opt.MapFrom(vr => vr.Contact.Email))
                 .ForMember(v => v.ContactPhone, opt => opt.MapFrom(vr => vr.Contact.Phone))
-                .ForMember(v => v.Features, opt => opt.MapFrom(vr => vr.Features.Select(id => new VehicleFeature{ FeatureId = id })));
+                .ForMember(v => v.Features, opt => opt.Ignore())
+                .AfterMap((vr, v) => {
+                    // Remove unselected features
+                    var updatedFeatures = v.Features.ToList();
+                    updatedFeatures.RemoveAll(vf => !vr.Features.Any(vrf => vrf == vf.FeatureId));
+                    // Add newly-selected features
+                    var existingFeatures = updatedFeatures.Select(vf => vf.FeatureId);
+                    updatedFeatures.AddRange(vr.Features.Where(vrf => !existingFeatures.Any(ef => ef == vrf)).Select(vrf => new VehicleFeature() { FeatureId = vrf, VehicleId = v.Id }));
+                    v.Features = updatedFeatures;
+                });
         }
     }
 }

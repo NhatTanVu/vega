@@ -92,5 +92,13 @@ namespace vega.Controllers
 
             return Ok(vehicleResource);
         }
+
+        public void TestMethod1()
+        {
+        }
+
+        public void TestMethod2()
+        {
+        }
     }
 }

@@ -20,11 +20,11 @@ namespace vega.Controllers
 
         }
         [HttpGet("/api/features")]
-        public async Task<IEnumerable<FeatureResource>> GetMakes()
+        public async Task<IEnumerable<KeyValuePairResource>> GetMakes()
         {
             var makes = await context.Features.ToListAsync();
             
-            return mapper.Map<List<Feature>, List<FeatureResource>>(makes); 
+            return mapper.Map<List<Feature>, List<KeyValuePairResource>>(makes); 
         }
     }
 }

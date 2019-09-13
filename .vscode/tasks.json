@@ -31,6 +31,12 @@
                 "${workspaceFolder}/vega.csproj"
             ],
             "problemMatcher": "$tsc"
+        },
+        {
+            "type": "npm",
+            "script": "build",
+            "path": "ClientApp/",
+            "problemMatcher": []
         }
     ]
 }

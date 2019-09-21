@@ -7,7 +7,6 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class VehicleService {
-
   constructor(private http: Http) { }
 
   getMakes() {
@@ -38,5 +37,10 @@ export class VehicleService {
   delete(id) {
     return this.http.delete('/api/vehicles/' + id)
     .pipe(map(res => res.json()));    
+  }
+
+  getVehicles() {
+    return this.http.get('/api/vehicles')
+    .pipe(map(res => res.json()));
   }
 }

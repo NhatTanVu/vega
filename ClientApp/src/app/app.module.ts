@@ -20,6 +20,7 @@ import { FetchDataComponent } from './components/fetch-data/fetch-data.component
 import { VehicleFormComponent } from './components/vehicle-form/vehicle-form.component';
 
 import { VehicleService } from './services/vehicle.service';
+import { VehicleListComponent } from './components/vehicle-list/vehicle-list.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { VehicleService } from './services/vehicle.service';
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
-    VehicleFormComponent
+    VehicleFormComponent,
+    VehicleListComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -37,11 +39,12 @@ import { VehicleService } from './services/vehicle.service';
     FormsModule,
     ToastyModule.forRoot(),
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: '', redirectTo: "vehicles", pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'vehicles/new', component: VehicleFormComponent },
-      { path: 'vehicles/:id', component: VehicleFormComponent }
+      { path: 'vehicles/:id', component: VehicleFormComponent },
+      { path: 'vehicles', component: VehicleListComponent }
     ])
   ],
   providers: [

@@ -40,8 +40,8 @@ export class VehicleService {
     .pipe(map(res => res.json()));    
   }
 
-  getVehicles() {
-    return this.http.get(this.vehiclesEndpoint)
+  getVehicles(filter) {
+    return this.http.get(this.vehiclesEndpoint + '?' + this.toQueryString(filter))
     .pipe(map(res => res.json()));
   }
 

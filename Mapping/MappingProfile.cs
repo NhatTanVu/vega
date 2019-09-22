@@ -37,7 +37,7 @@ namespace vega.Mapping
                     updatedFeatures.AddRange(vr.Features.Where(vrf => !existingFeatures.Any(ef => ef == vrf)).Select(vrf => new VehicleFeature() { FeatureId = vrf, VehicleId = v.Id }));
                     v.Features = updatedFeatures;
                 });
-            CreateMap<FilterResource, Filter>();
+            CreateMap<VehicleQueryResource, VehicleQuery>();
         }
     }
 }

@@ -21,6 +21,7 @@ import { VehicleFormComponent } from './components/vehicle-form/vehicle-form.com
 
 import { VehicleService } from './services/vehicle.service';
 import { VehicleListComponent } from './components/vehicle-list/vehicle-list.component';
+import { PaginationComponent } from './components/_shared/pagination.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { VehicleListComponent } from './components/vehicle-list/vehicle-list.com
     CounterComponent,
     FetchDataComponent,
     VehicleFormComponent,
-    VehicleListComponent
+    VehicleListComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

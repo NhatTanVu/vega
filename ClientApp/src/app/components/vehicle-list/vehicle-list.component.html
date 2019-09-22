@@ -2,17 +2,17 @@
 <p>
   <a [routerLink]="['/vehicles/new']" class="btn btn-primary">New Vehicle</a>
 </p>
-<div class="well">
-  <div class="form-group">
-    <label for="make">Make</label>
-    <select id="make" class="form-control" [(ngModel)]="query.makeId" (change)="onFilterChange()">
-      <option value=""></option>
-      <option *ngFor="let m of makes" value="{{ m.id }}">{{ m.name }}</option>
-    </select>
+<div class="card bg-light">
+  <div class="card-body">
+    <div class="form-group">
+      <label for="make">Make</label>
+      <select id="make" class="form-control" [(ngModel)]="query.makeId" (change)="onFilterChange()">
+        <option value=""></option>
+        <option *ngFor="let m of makes" value="{{ m.id }}">{{ m.name }}</option>
+      </select>
+    </div>
+    <a class="btn btn-secondary" (click)="resetFilter()" style="color: white;">Reset</a>
   </div>
-  <p>
-    <a class="btn btn-primary" (click)="resetFilter()" style="color: white;">Reset</a>
-  </p>
 </div>
 <table class="table">
   <thead>
@@ -31,7 +31,7 @@
       </th>
     </tr>
   </thead>
-  <tr *ngFor="let vehicle of vehicles">
+  <tr *ngFor="let vehicle of queryResult.items">
     <td>{{ vehicle.id }}</td>
     <td>{{ vehicle.make.name }}</td>
     <td>{{ vehicle.model.name }}</td>
@@ -39,3 +39,4 @@
     <td><a [routerLink]="['/vehicles/' + vehicle.id]" class="btn btn-primary">View</a></td>
   </tr>
 </table>
+<pagination [total-items]="queryResult.totalItems" [page-size]="query.pageSize" (page-changed)="onPageChange($event)"></pagination>

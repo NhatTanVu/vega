@@ -17,11 +17,18 @@
 <table class="table">
   <thead>
     <tr>
-      <th (click)="sortBy('id')">Id</th>
-      <th (click)="sortBy('make')">Make</th>
-      <th (click)="sortBy('model')">Model</th>
-      <th (click)="sortBy('contactName')">Contact Name</th>
-      <th></th>
+      <th *ngFor="let c of columns" (click)="sortBy(c.key)">
+        <div *ngIf="c.isSortable">
+            {{c.title}}
+            <i *ngIf="query.sortBy === c.key" 
+              class="fas"
+              [class.fa-sort-up]="query.isSortAscending"
+              [class.fa-sort-down]="!query.isSortAscending"></i>
+        </div>
+        <div *ngIf="!c.isSortable">
+            {{c.title}}
+        </div>
+      </th>
     </tr>
   </thead>
   <tr *ngFor="let vehicle of vehicles">

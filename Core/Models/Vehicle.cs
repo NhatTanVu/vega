@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace vega.Models
+namespace vega.Core.Models
 {
     [Table("Vehicles")]
     public class Vehicle
@@ -23,9 +23,12 @@ namespace vega.Models
         public string ContactPhone { get; set; }
         public DateTime LastUpdated { get; set; }
         public ICollection<VehicleFeature> Features { get; set; }
+        public ICollection<Photo> Photos { get; set; }
+
         public Vehicle()
         {
             Features = new Collection<VehicleFeature>();
+            Photos = new Collection<Photo>();
         }
     }
 }

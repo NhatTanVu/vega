@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 using vega.Core;
-using vega.Models;
+using vega.Core.Models;
 
 namespace vega.Persistence
 {

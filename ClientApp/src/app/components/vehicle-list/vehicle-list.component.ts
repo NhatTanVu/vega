@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/services/auth.service';
 import { KeyValuePair } from './../../models/vehicle';
 import { Component, OnInit } from '@angular/core';
 import { Vehicle } from 'src/app/models/vehicle';
@@ -24,7 +25,7 @@ private readonly PAGE_SIZE = 3;
     { }
   ];
 
-  constructor(private vehicleService: VehicleService) { }
+  constructor(private vehicleService: VehicleService, private auth: AuthService) { }
 
   ngOnInit() {
     this.vehicleService.getMakes()

@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using vega.Controllers;
 using vega.Core;
 using vega.Core.Models;
 using vega.Persistence;
@@ -53,7 +54,10 @@ namespace vega
             {
                 options.Authority = "https://tan-vu.eu.auth0.com/";
                 options.Audience = "https://api.vega.com";
-            });           
+            });
+            services.AddAuthorization(options => {
+                options.AddPolicy(Policies.RequireAdminRole, policy => policy.RequireClaim("https://vega.com/roles", "Admin"));
+            });
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

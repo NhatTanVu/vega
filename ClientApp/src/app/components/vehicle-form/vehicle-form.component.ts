@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import 'rxjs/add/observable/forkJoin';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-vehicle-form',
@@ -132,6 +133,15 @@ export class VehicleFormComponent implements OnInit {
         showClose: true,
         timeout: 5000
       });
+    }
+    else if (err instanceof HttpErrorResponse) {
+      this.toasty.error({
+        title: 'Error',
+        msg: err.statusText,
+        theme: 'bootstrap',
+        showClose: true,
+        timeout: 5000
+      });      
     }
     else {
       throw err;

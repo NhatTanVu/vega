@@ -30,7 +30,7 @@ export class VehicleFormComponent implements OnInit {
   features: any[];
 
   constructor(
-    private toastyService: ToastyService,
+    private toasty: ToastyService,
     private route: ActivatedRoute,
     private router: Router,
     private vehicleService: VehicleService) { 
@@ -45,15 +45,14 @@ export class VehicleFormComponent implements OnInit {
       this.vehicleService.getFeatures()
     ];
 
-    if (this.vehicle.id)
-      sources.push(this.vehicleService.getVehicle(this.vehicle.id));
-
     Observable.forkJoin(sources).subscribe(data => {
       this.makes = data[0];
       this.features = data[1];
       if (this.vehicle.id) {
-        this.setVehicle(data[2]);
-        this.populateModels();
+        this.vehicleService.getVehicle(this.vehicle.id).subscribe(vehicle => {
+          this.setVehicle(vehicle);
+          this.populateModels();
+        });
       }
     }, err => {
       if (err.status == 404) {
@@ -95,7 +94,7 @@ export class VehicleFormComponent implements OnInit {
     var result$ = (this.vehicle.id) ? this.vehicleService.update(this.vehicle) : this.vehicleService.create(this.vehicle);
     result$.subscribe(
       vehicle => {
-        this.toastyService.success({
+        this.toasty.success({
           title: "Success",
           msg: "Data was successfully saved.",
           theme: "bootstrap",
@@ -103,6 +102,9 @@ export class VehicleFormComponent implements OnInit {
           timeout: 5000
         });
         this.router.navigate(['/vehicles/', vehicle.id]);
+      },
+      err => {
+        this.handleUnauthorizedError(err);
       }
     );
   }
@@ -113,8 +115,26 @@ export class VehicleFormComponent implements OnInit {
       .subscribe(
         x => {
           this.router.navigate(["/"]);
+        },
+        err => {
+          this.handleUnauthorizedError(err);
         }
       );
+    }
+  }
+
+  private handleUnauthorizedError(err) {
+    if (err.error == "login_required") {
+      this.toasty.error({
+        title: 'Error',
+        msg: 'Login required.',
+        theme: 'bootstrap',
+        showClose: true,
+        timeout: 5000
+      });
+    }
+    else {
+      throw err;
     }
   }
 }

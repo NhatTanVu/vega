@@ -1,3 +1,4 @@
+import { AuthService } from './../../services/auth.service';
 import { PhotoService } from './../../services/photo.service';
 import { ToastyService } from 'ng2-toasty';
 import { VehicleService } from './../../services/vehicle.service';
@@ -18,6 +19,7 @@ export class ViewVehicleComponent implements OnInit {
   progress: any;
 
   constructor(
+    private auth: AuthService,
     private zone: NgZone,    
     private route: ActivatedRoute, 
     private router: Router,

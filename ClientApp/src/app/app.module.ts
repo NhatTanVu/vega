@@ -1,3 +1,4 @@
+import { AuthGuardService } from './services/auth-guard.service';
 import { BrowserXhrWithProgress, ProgressService } from './services/progress.service';
 import { AppErrorHandler } from './app.error-handler';
 import { BrowserModule } from '@angular/platform-browser';
@@ -25,6 +26,10 @@ import { VehicleListComponent } from './components/vehicle-list/vehicle-list.com
 import { PaginationComponent } from './components/_shared/pagination.component';
 import { ViewVehicleComponent } from './components/view-vehicle/view-vehicle.component';
 import { PhotoService } from './services/photo.service';
+import { AuthService } from './services/auth.service';
+import { CallbackComponent } from './components/callback/callback.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { AdminAuthGuardService } from './services/admin-auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -36,7 +41,9 @@ import { PhotoService } from './services/photo.service';
     VehicleFormComponent,
     VehicleListComponent,
     PaginationComponent,
-    ViewVehicleComponent
+    ViewVehicleComponent,
+    CallbackComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -52,16 +59,22 @@ import { PhotoService } from './services/photo.service';
       { path: 'vehicles', component: VehicleListComponent },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },   
-      { path: '**', redirectTo: 'home' }   
+      { path: '**', redirectTo: 'home' } ,
+      { path: 'callback', component: CallbackComponent },
+      { path: 'admin', component: AdminComponent, canActivate: [ AdminAuthGuardService ] }
     ])
   ],
   providers: [
     { provide: ErrorHandler, useClass: AppErrorHandler },
     { provide: BrowserXhr, useClass: BrowserXhrWithProgress },
+    AuthGuardService,
+    AdminAuthGuardService,
     VehicleService,
     PhotoService,
-    ProgressService
+    ProgressService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+}

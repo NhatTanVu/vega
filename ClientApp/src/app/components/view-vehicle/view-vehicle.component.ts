@@ -80,13 +80,28 @@ export class ViewVehicleComponent implements OnInit {
         this.photos.push(photo);
       },
       error => {
-        this.toasty.error({
-          title: 'Error',
-          msg: error.text(),
-          theme: 'bootstrap',
-          showClose: true,
-          timeout: 5000
-        });
+        this.handleError(error);
       });
   }
+
+  private handleError(error) {
+    if (error.error == "login_required") {
+      this.toasty.error({
+        title: 'Error',
+        msg: 'Login required.',
+        theme: 'bootstrap',
+        showClose: true,
+        timeout: 5000
+      });
+    }
+    else {
+      this.toasty.error({
+        title: 'Error',
+        msg: error.text(),
+        theme: 'bootstrap',
+        showClose: true,
+        timeout: 5000
+      });
+    }
+  }  
 }

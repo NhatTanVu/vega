@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserXhr, HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { ToastyModule } from 'ng2-toasty';
+import { ChartModule } from 'angular2-chartjs';
 import * as Sentry from "@sentry/browser";
 
 Sentry.init({
@@ -51,6 +52,7 @@ import { AdminAuthGuardService } from './services/admin-auth-guard.service';
     HttpClientModule,
     FormsModule,
     ToastyModule.forRoot(),
+    ChartModule,
     RouterModule.forRoot([
       { path: '', redirectTo: "vehicles", pathMatch: 'full' },
       { path: 'vehicles/new', component: VehicleFormComponent, canActivate: [ AuthGuardService ] },

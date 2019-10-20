@@ -24,8 +24,11 @@ namespace vega
             var builder = new ConfigurationBuilder()
                 .SetBasePath(_env.ContentRootPath)
                 .AddJsonFile("appsettings.json", false)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json")
-                .AddEnvironmentVariables();
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json");
+
+            if (env.IsDevelopment())
+                builder = builder.AddUserSecrets<Startup>();
+            builder = builder.AddEnvironmentVariables();
             _config = builder.Build();
         }
 
@@ -41,6 +44,8 @@ namespace vega
             services.AddScoped<IVehicleRepository, VehicleRepository>();
             services.AddScoped<IModelRepository, ModelRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddTransient<IPhotoService, PhotoService>();
+            services.AddTransient<IPhotoStorage, FileSystemPhotoStorage>();
 
             services.AddAutoMapper();
             services.AddDbContext<VegaDbContext>(options => options.UseSqlServer(_config["ConnectionStrings:Default"]));

@@ -30,5 +30,14 @@ namespace vega.Extensions
 
             return query.Skip((queryObject.Page - 1) * queryObject.PageSize).Take(queryObject.PageSize);
         }
+
+        public static IQueryable<Vehicle> ApplyFiltering(this IQueryable<Vehicle> query, VehicleQuery queryObject)
+        {
+            if (queryObject.MakeId.HasValue)
+                query = query.Where(v => v.Model.MakeId == queryObject.MakeId.Value);
+            if (queryObject.ModelId.HasValue)
+                query = query.Where(v => v.Model.Id == queryObject.ModelId.Value);
+            return query;
+        }
     }
 }

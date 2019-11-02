@@ -15,7 +15,7 @@
 3. **Vehicle - View Photos**\
 ![Vehicle - View Photos](https://raw.githubusercontent.com/NhatTanVu/vega/master/_screenshots/Vehicle%20-%20View%20Photos.PNG)
 
-4. **Login**\
+4. **Login** (using [Auth0](https://auth0.com/)) \
 ![Login](https://raw.githubusercontent.com/NhatTanVu/vega/master/_screenshots/Login%20-%20Ath0.PNG)
 
 5. **Home - Admin**\

@@ -25,7 +25,7 @@ private readonly PAGE_SIZE = 3;
     { }
   ];
 
-  constructor(private vehicleService: VehicleService, private auth: AuthService) { }
+  constructor(private vehicleService: VehicleService, public auth: AuthService) { }
 
   ngOnInit() {
     this.vehicleService.getMakes()

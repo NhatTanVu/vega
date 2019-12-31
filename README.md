@@ -3,8 +3,10 @@
 2. Install [C# extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp) for VS Code
 3. Open Command Line on "**\vega\ClientApp**" folder, and run "**npm install**"
 4. Open Command Line on "**\vega**" folder, and run "**dotnet user-secrets set "ConnectionStrings:Default" "Server=*<server_name>*;Database=vega;User Id=*<user_name>*;Password=*<pass_word>*"**"
-5. Open Command Line on "**\vega**" folder, and run "**dotnet ef database update**" to restore "**vega**" database
+5. Open Command Line on "**\vega**" folder, and run "**dotnet ef database update**" to restore "**vega**" database or run "**.\sql\migration.sql**" script to create vega DB.
 6. Open VS Code, press "**Ctrl+F5**"
+# How to deploy to Azure
+1. Follow this [article](https://docs.microsoft.com/en-us/aspnet/core/tutorials/publish-to-azure-webapp-using-vscode?view=aspnetcore-3.1)
 # Screenshots
 1. **Home - Guest**\
 ![Home - Guest](https://raw.githubusercontent.com/NhatTanVu/vega/master/_screenshots/Home%20-%20Guest.PNG?raw=true)

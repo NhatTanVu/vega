@@ -11,7 +11,9 @@
 ![App Settings](https://raw.githubusercontent.com/NhatTanVu/vega/master/_screenshots/Add%20App%20Settings.PNG)
 3. Follow this [article](https://docs.microsoft.com/en-us/aspnet/core/tutorials/publish-to-azure-webapp-using-vscode?view=aspnetcore-3.1) to deploy to Azure.
 # Azure website
-https://vega-cars.azurewebsites.net/
+* **URL**: https://vega-cars.azurewebsites.net/
+* **Username**: user1@tan.com
+* **Password**: `4)49(A][:9t2Sh
 # Screenshots
 1. **Home - Guest**\
 ![Home - Guest](https://raw.githubusercontent.com/NhatTanVu/vega/master/_screenshots/Home%20-%20Guest.PNG?raw=true)

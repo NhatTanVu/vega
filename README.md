@@ -14,7 +14,7 @@
 * **URL**: https://vega-cars.azurewebsites.net/
 * **Username**: user1@tan.com
 * **Password**: `4)49(A][:9t2Sh
-* **Notes**: Due to current Azure SQL tier limit, please reload homepage twice for it to kick in
+* **Notes**: Due to current Azure SQL tier limit, please reload homepage twice to kick in
 # Screenshots
 1. **Home - Guest**\
 ![Home - Guest](https://raw.githubusercontent.com/NhatTanVu/vega/master/_screenshots/Home%20-%20Guest.PNG?raw=true)

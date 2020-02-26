@@ -11,7 +11,7 @@
 ![App Settings](https://raw.githubusercontent.com/NhatTanVu/vega/master/_screenshots/Add%20App%20Settings.PNG)
 3. Follow this [article](https://docs.microsoft.com/en-us/aspnet/core/tutorials/publish-to-azure-webapp-using-vscode?view=aspnetcore-3.1) to deploy to Azure
 # Azure website
-* **URL**: https://vega-cars.azurewebsites.net/
+* **URL**: https://vega-cars.azurewebsites.net/ (offline)
 * **Username**: user1@tan.com
 * **Password**: `4)49(A][:9t2Sh
 * **Notes**: Due to current Azure SQL tier limit, in case of error, please refresh homepage a few times for the SQL Server to kick off and start loading data
